@@ -1,36 +1,11 @@
 import { createUseStyles } from 'react-jss'
-
-const colors = {
-  generalWhite: '#FFFFFF',
-  generalBlack: '#000000',
-  generalRed: '#ff5d4f',
-  primaryGray: '#616161',
-  secondaryGray: '#b5b5b5',
-  primaryBlue: '#85c8ee',
-  secondaryBlue: '#d3ebf9',
-}
-
-const typography = {
-  span: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '18px',
-    lineHeight: '25px',
-  },
-  a: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '16px',
-    lineHeight: '22px',
-    textDecoration: 'none',
-  },
-}
+import { colors, typography } from '../../helpers/constants.styles'
 
 export const footerStyles = () => ({
   footer: {
-    padding: '40px 105px',
+    height: '205px',
+    width: '100%',
+    padding: '3vh 5vw',
     background: `${colors.secondaryBlue}`,
     display: 'flex',
     justifyContent: 'space-between',
@@ -38,22 +13,25 @@ export const footerStyles = () => ({
   footer__info: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '45%',
+    width: '50%',
     '& ul': {
       listStyleType: 'none',
       padding: 0,
       margin: 0,
+      minWidth: '150px',
       '& li': {
         marginBottom: '8px',
         '&:first-child': {
           marginBottom: '20px',
         },
         '& span': {
-          ...typography.span,
+          ...typography.input,
+          fontWeight: 'bold',
           color: `${colors.generalBlack}`,
         },
         '& a': {
-          ...typography.a,
+          ...typography.placeholder,
+          textDecoration: 'none',
           color: `${colors.generalBlack}`,
           '&:hover': {
             opacity: 0.7,
@@ -100,6 +78,38 @@ export const footerStyles = () => ({
     backgroundImage: 'url(./images/facebook.svg)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
+  },
+  '@media (max-width: 768px)': {
+    footer: {
+      flexDirection: 'column',
+      height: '300px',
+    },
+    footer__info: {
+      width: '100%',
+      '& ul': {
+        minWidth: '100px',
+        marginTop: '3%',
+      },
+    },
+    footer_contacts: {
+      alignSelf: 'end',
+    },
+  },
+  '@media (max-width: 450px)': {
+    footer: {
+      flexDirection: 'row',
+      height: '500px',
+    },
+    footer__info: {
+      flexDirection: 'column',
+      '& ul': {
+        minWidth: '50px',
+      },
+    },
+    footer_contacts: {
+      marginTop: '5%',
+      alignSelf: 'start',
+    },
   },
 })
 

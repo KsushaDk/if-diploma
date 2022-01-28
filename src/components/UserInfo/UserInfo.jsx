@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,6 +20,7 @@ function UserInfo() {
   const logoutFunc = useCallback((event) => {
     event.preventDefault()
     dispatch(logoutUser(false))
+    dispatch(showSettings(false))
   }, [])
 
   return (
@@ -37,9 +36,9 @@ function UserInfo() {
           </div>
         </div>
         <button
+          type="button"
           className={classes.user__info_logout}
           onClick={logoutFunc}
-          type="button"
         >
           <Link to="/">Log out</Link>
         </button>

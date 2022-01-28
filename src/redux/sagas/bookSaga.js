@@ -11,7 +11,19 @@ function* getBooksSaga({ type }) {
   try {
     if (type === getAllBooks.toString()) {
       const books = yield call(httpGet, allBooks)
-      yield put(setAllBooks(books))
+      const setBooksStatus = () => {
+        const status = ['Available', 'Taken']
+        books.map((bookItem) => {
+          const bookWithStatus = bookItem
+          bookWithStatus.status =
+            status[Math.floor(Math.random() * status.length)]
+
+          bookWithStatus.rating = Math.floor(1 + Math.random() * (5 + 1 - 1))
+          return bookWithStatus
+        })
+        return books
+      }
+      yield put(setAllBooks(setBooksStatus()))
     }
   } catch (err) {
     console.log('Error:', err.message)

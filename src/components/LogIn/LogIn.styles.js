@@ -1,70 +1,40 @@
 import { createUseStyles } from 'react-jss'
-
-const colors = {
-  generalWhite: '#FFFFFF',
-  generalBlack: '#000000',
-  generalRed: '#ff5d4f',
-  primaryGray: '#616161',
-  secondaryGray: '#b5b5b5',
-  primaryBlue: '#85c8ee',
-  secondaryBlue: '#d3ebf9',
-}
-
-const btn = {
-  borderRadius: '8px',
-  border: 'none',
-  cursor: 'pointer',
-}
-
-const typography = {
-  h2: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '24px',
-    lineHeight: '33px',
-  },
-
-  btn: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '18px',
-    lineHeight: '25px',
-  },
-  label: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '16px',
-    lineHeight: '22px',
-  },
-  input: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '18px',
-    lineHeight: '25px',
-  },
-  warning: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '22px',
-    lineHeight: '28px',
-  },
-}
+import { colors, btn, typography } from '../../helpers/constants.styles'
 
 export const logInStyles = () => ({
   login: {
+    position: 'absolute',
+    zIndex: 2,
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    paddingTop: '10%',
+    background: 'rgba(181, 181, 181, 0.8)',
+  },
+  login__field: {
+    position: 'relative',
     margin: '0 auto',
     width: '417px',
-    padding: '40px 32px',
+    padding: '3% 2%',
     background: `${colors.generalWhite}`,
     borderRadius: '8px',
   },
+  close: {
+    position: 'absolute',
+    top: '5%',
+    right: '5%',
+    width: '16px',
+    height: '16px',
+    backgroundImage: 'url(./images/close.png)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    '&:hover': {
+      opacity: 0.7,
+    },
+  },
   login__title: {
-    marginBottom: '3%',
+    marginBottom: '7%',
     ...typography.h2,
     color: `${colors.generalBlack}`,
   },
@@ -83,7 +53,6 @@ export const logInStyles = () => ({
       paddingLeft: '16px',
       ...typography.input,
       border: `1px solid ${colors.secondaryGray}`,
-      boxSizing: 'border-box',
       borderRadius: '8px',
     },
   },
@@ -92,35 +61,28 @@ export const logInStyles = () => ({
     width: '100%',
     height: '44px',
     marginTop: '24px',
-    boxSizing: 'border-box',
-    ...typography.btn,
-    color: `${colors.generalWhite}`,
-    backgroundColor: `${colors.generalRed}`,
-    ...btn,
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-  redirect_btn: {
-    width: '100%',
-    height: '44px',
-    marginTop: '24px',
-    boxSizing: 'border-box',
     backgroundColor: `${colors.generalRed}`,
     ...btn,
     '& a': {
       ...typography.btn,
-      color: `${colors.generalWhite}`,
       textDecoration: 'none',
-    },
-    '&:hover': {
-      opacity: 0.7,
+      color: `${colors.generalWhite}`,
     },
   },
   warning: {
     marginTop: '5%',
     ...typography.warning,
     color: `${colors.generalRed}`,
+  },
+  '@media (max-width: 450px)': {
+    login__field: {
+      maxWidth: '310px',
+      paddingTop: '7%',
+    },
+    close: {
+      top: '3%',
+      right: '3%',
+    },
   },
 })
 

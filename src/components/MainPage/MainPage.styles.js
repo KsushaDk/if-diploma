@@ -1,69 +1,17 @@
 import { createUseStyles } from 'react-jss'
-// import { colors } from '../../constants.styles'
-
-const colors = {
-  generalWhite: '#FFFFFF',
-  generalBlack: '#000000',
-  generalRed: '#ff5d4f',
-  primaryGray: '#616161',
-  secondaryGray: '#b5b5b5',
-  primaryBlue: '#85c8ee',
-  secondaryBlue: '#d3ebf9',
-}
-
-const btn = {
-  borderRadius: '8px',
-  border: 'none',
-  cursor: 'pointer',
-}
-
-const typography = {
-  log: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    lineHeight: '27px',
-    textDecoration: 'none',
-  },
-  placeholder: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '16px',
-    lineHeight: '22px',
-  },
-  h2: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '38px',
-    lineHeight: '52px',
-  },
-  p: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '28px',
-    lineHeight: '38px',
-  },
-  a: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '20px',
-    lineHeight: '37px',
-    textDecoration: 'none',
-  },
-}
+import { colors, btn, typography } from '../../helpers/constants.styles'
 
 export const mainPageStyles = () => ({
   main__page: {
-    // width: '100%',
-    // height: '100%',
-    padding: '30px 105px 265px',
+    width: '100vw',
+    height: '100vh',
+    padding: '3vh 5vw 20vh',
     background: `${colors.generalWhite}`,
-    // position: 'absolute',
+    position: 'relative',
+    zIndex: 1,
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
   },
   main__page_navi: {
     display: 'flex',
@@ -78,6 +26,7 @@ export const mainPageStyles = () => ({
   main__page_navi_logo: {
     width: '175px',
     height: '35px',
+    marginRight: '5%',
     backgroundImage: 'url(./images/main_logo.svg)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
@@ -86,9 +35,8 @@ export const mainPageStyles = () => ({
     width: '70%',
     position: 'relative',
     '& input': {
-      boxSizing: 'border-box',
       width: '100%',
-      padding: '15px 0 15px 50px',
+      padding: '13px 0 13px 10%',
       border: `2px solid ${colors.generalRed}`,
       borderRadius: '8px',
       ...typography.placeholder,
@@ -108,18 +56,18 @@ export const mainPageStyles = () => ({
   },
   main__page_navi_login: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    width: '12%',
-    '& a': {
+    width: '16%',
+    '& div': {
       ...typography.log,
       color: `${colors.primaryGray}`,
-      '&:focus': {
-        color: `${colors.generalRed}`,
-      },
-      '&:hover': {
-        opacity: 0.7,
-      },
+    },
+    '&:focus': {
+      color: `${colors.generalRed}`,
+    },
+    '&:hover': {
+      opacity: 0.7,
     },
   },
 
@@ -127,20 +75,18 @@ export const mainPageStyles = () => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: '5%',
-    padding: '70px 80px',
+    height: '80%',
+    padding: '5% 6%',
     background: `${colors.secondaryBlue}`,
   },
   main__page_content_title: {
-    ...typography.h2,
-    margin: 0,
-    paddingBottom: '40px',
+    ...typography.h1,
+    marginBottom: '15%',
     color: `${colors.generalBlack}`,
   },
   main__page_content_p: {
     ...typography.p,
-    margin: 0,
-    paddingBottom: '40px',
+    marginBottom: '15%',
     color: `${colors.generalBlack}`,
   },
   main__page_content_btn: {
@@ -148,13 +94,8 @@ export const mainPageStyles = () => ({
     height: '48px',
     background: `${colors.generalRed}`,
     ...btn,
-    '& a': {
-      ...typography.a,
-      color: `${colors.generalWhite}`,
-    },
-    '&:hover': {
-      opacity: 0.7,
-    },
+    ...typography.btn,
+    color: `${colors.generalWhite}`,
   },
   main__page_content_picture: {
     width: '670px',
@@ -163,11 +104,60 @@ export const mainPageStyles = () => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
   },
-  layout__bg: {
-    background: 'rgba(181, 181, 181, 0.8)',
-    width: '100vw',
-    height: '100vh',
-    paddingTop: '10%',
+  '@media (max-width: 768px)': {
+    main__page_navi: {
+      flexDirection: 'column',
+    },
+    main__page_navi_group: {
+      width: '100%',
+      marginBottom: '2%',
+    },
+    main__page_navi_logo: {
+      marginRight: '3%',
+    },
+    main__page_navi_search: {
+      width: '100%',
+    },
+    main__page_navi_login: {
+      width: '30%',
+      justifyContent: 'space-between',
+    },
+    main__page: {
+      padding: '3vh 5vw',
+    },
+    main__page_content: {
+      flexDirection: 'column',
+      '& div': {
+        width: '100%',
+      },
+    },
+    main__page_content_title: {
+      marginBottom: '10%',
+    },
+    main__page_content_p: {
+      marginBottom: '7%',
+    },
+    main__page_content_picture: {
+      marginTop: '5%',
+    },
+  },
+  '@media (max-width: 450px)': {
+    main__page_navi_group: {
+      flexDirection: 'column',
+    },
+    main__page_navi_search: {
+      width: '100%',
+    },
+    main__page_content: {
+      flexDirection: 'row',
+    },
+    main__page_content_picture: {
+      display: 'none',
+    },
+    main__page_navi_login: {
+      width: '50%',
+      margin: '0 auto',
+    },
   },
 })
 

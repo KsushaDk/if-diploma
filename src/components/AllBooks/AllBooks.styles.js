@@ -1,57 +1,11 @@
 import { createUseStyles } from 'react-jss'
-
-const colors = {
-  generalWhite: '#FFFFFF',
-  generalBlack: '#000000',
-  generalRed: '#ff5d4f',
-  primaryGray: '#616161',
-  secondaryGray: '#b5b5b5',
-  primaryBlue: '#85c8ee',
-  secondaryBlue: '#d3ebf9',
-}
-
-const btn = {
-  borderRadius: '8px',
-  border: 'none',
-  cursor: 'pointer',
-}
-
-const typography = {
-  h3: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    lineHeight: '27px',
-    textDecoration: 'none',
-  },
-  about: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '14px',
-    lineHeight: '19px',
-  },
-  btn: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '16px',
-    lineHeight: '22px',
-  },
-  status: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '12px',
-    lineHeight: '16px',
-  },
-}
+import { colors, btn, typography } from '../../helpers/constants.styles'
 
 export const allBooksStyles = () => ({
   books: {
-    padding: '0px 105px 80px',
-    background: '#FAFAFA',
+    padding: '3vh 5vw',
+    background: `${colors.mainBg}`,
+    minHeight: 'calc(100vh - 205px)',
     '& a': {
       textDecoration: 'none',
     },
@@ -59,26 +13,25 @@ export const allBooksStyles = () => ({
   books__list: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100%',
-    padding: '30px',
-    marginTop: '5%',
-    boxSizing: 'border-box',
+    padding: '2%',
+    borderRadius: '16px',
     background: `${colors.generalWhite}`,
   },
   books__list_title: {
-    margin: '0px',
     paddingBottom: '20px',
     ...typography.h3,
     color: `${colors.generalBlack}`,
   },
   books__list_items: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     flexWrap: 'wrap',
     alignContent: 'flex-start',
+    gap: '2%',
   },
   books__list_item: {
     width: '22%',
+    minWidth: '300px',
     height: 'auto',
     display: 'flex',
     justifyContent: 'space-between',
@@ -92,6 +45,7 @@ export const allBooksStyles = () => ({
     '& img': {
       width: '100%',
       height: '100%',
+      borderRadius: '8px',
     },
     '&:hover': {
       opacity: 0.7,
@@ -103,25 +57,22 @@ export const allBooksStyles = () => ({
     justifyContent: 'space-between',
     width: '50%',
     height: '100%',
-    padding: '0px',
   },
   books__list_item_status: {
     height: '26px',
+    width: '80%',
     textAlign: 'center',
-    ...typography.status,
+    ...typography.a,
     color: `${colors.generalBlack}`,
     background: `${colors.generalWhite}`,
     border: `2px solid ${colors.primaryBlue}`,
     borderRadius: '24px',
-    boxSizing: 'border-box',
   },
   books__list_item_about: {
-    margin: '0px',
     '& p': {
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      margin: '0px',
       paddingBottom: '15%',
       ...typography.about,
       color: `${colors.generalBlack}`,
@@ -132,7 +83,7 @@ export const allBooksStyles = () => ({
     '& span': {
       margin: '0px',
       paddingBottom: '10%',
-      ...typography.status,
+      ...typography.a,
       fontWeight: 'normal',
       color: `${colors.primaryGray}`,
       '&:hover': {
@@ -141,38 +92,48 @@ export const allBooksStyles = () => ({
     },
   },
   books__list_item_stars: {
-    minWidth: '100%',
-    minHeight: '19px',
+    display: 'flex',
+    columnGap: '5%',
+    width: '100%',
+    marginBottom: '8px',
+  },
+  books__list_item_star: {
+    height: '19px',
+    width: '19px',
     backgroundImage: 'url(./images/star.svg)',
-    backgroundRepeat: 'space',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
   },
   books__list_item_btn_order: {
-    width: '122px',
+    width: '100%',
     height: '32px',
-    boxSizing: 'border-box',
     textAlign: 'center',
-    ...typography.status,
+    ...typography.a,
+    fontWeight: 'normal',
     color: `${colors.generalWhite}`,
     backgroundColor: `${colors.secondaryGray}`,
     ...btn,
     outline: 'none',
-    '&:hover': {
-      opacity: 0.7,
-    },
   },
-  books__list_btn: {
+  books__list_btn_show: {
     alignSelf: 'center',
     marginTop: '36px',
     width: '185px',
     height: '48px',
-    boxSizing: 'border-box',
-    ...typography.btn,
+    ...typography.label,
+    fontWeight: 'normal',
     color: `${colors.generalWhite}`,
     backgroundColor: `${colors.generalRed}`,
     ...btn,
-    '&:hover': {
-      opacity: 0.7,
+  },
+  '@media (max-width: 768px)': {
+    books: {
+      minHeight: 'calc(100vh - 300px)',
+    },
+  },
+  '@media (max-width: 450px)': {
+    books: {
+      minHeight: 'calc(100vh - 500px)',
     },
   },
 })

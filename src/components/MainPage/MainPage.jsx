@@ -1,25 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-// import Modal from '../Modal/Modal'
+import React, { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import useStyles from './MainPage.styles'
 
 // components
 import Navigation from './Navigation'
-// import LogIn from '../LogIn/LogIn'
+import SignUp from '../SignUp/SignUp'
+import LogIn from '../LogIn/LogIn'
+
+// actions
+import { setSignUp } from '../../redux/actions'
 
 function MainPage() {
   const classes = useStyles()
+  const signUp = useSelector(({ registration }) => registration.signUp)
+  const logIn = useSelector(({ registration }) => registration.logIn)
 
-  // const [open, setOpen] = useState(false)
+  const dispatch = useDispatch()
+
+  const showSignUp = useCallback((event) => {
+    event.preventDefault()
+    dispatch(setSignUp(true))
+  }, [])
 
   return (
     <div className={classes.main__page}>
       <Navigation />
       <div className={classes.main__page_content}>
         <div>
-          <h2 className={classes.main__page_content_title}>
+          <h1 className={classes.main__page_content_title}>
             BIld your library
-          </h2>
+          </h1>
           <p className={classes.main__page_content_p}>
             Over 400.000 books
             <br />
@@ -30,19 +40,15 @@ function MainPage() {
           <button
             type="button"
             className={classes.main__page_content_btn}
-            // onClick={() => setOpen(true)}
+            onClick={showSignUp}
           >
-            <Link to="/signup">Let’s start</Link>
+            Let’s start
           </button>
         </div>
         <div className={classes.main__page_content_picture} />
       </div>
-
-      {/* <Modal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        children={<LogIn />}
-      /> */}
+      {signUp && <SignUp />}
+      {logIn && <LogIn />}
     </div>
   )
 }

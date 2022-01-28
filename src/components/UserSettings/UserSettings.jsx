@@ -46,13 +46,15 @@ function UserSettings() {
     if (state.password === state.newpassword && state.password !== '') {
       dispatch(addUser(state))
       setState({ ...state, password: '', newpassword: '' })
+      showWarning(false)
+      // alert('We saved your new password :)')
     }
   }, [state])
 
   return (
     <div className={classes.settings}>
       <div className={classes.settings__info}>
-        <h2 className={classes.settings__info_title}>Settings</h2>
+        <h3 className={classes.settings__info_title}>Settings</h3>
         <div className={classes.settings__info_photo}>
           <div className={classes.settings__info_photo_user} />
           <div>
@@ -115,11 +117,10 @@ function UserSettings() {
               onChange={handleChange('newpassword')}
             />
           </div>
-          <div>
-            <button className={classes.settings__info_form_btn} type="submit">
-              Save
-            </button>
-          </div>
+          {/* //убрать предупреждение после изменения пароля */}
+          <button className={classes.settings__info_form_btn} type="submit">
+            Save
+          </button>
           {warning && (
             <div className={classes.warning}>
               Password is incorrect. Please try again.
