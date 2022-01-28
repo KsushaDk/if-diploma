@@ -6,6 +6,9 @@ import { Route, Redirect } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
 
+// components
+import Footer from '../components/Footer/Footer'
+
 function PublicRoute({ children, ...props }) {
   const isAuthenticated = useSelector(({ user }) => user.isAuthenticated)
 
@@ -13,7 +16,12 @@ function PublicRoute({ children, ...props }) {
     return <Redirect to="/user" />
   }
 
-  return <Route {...props}>{children}</Route>
+  return (
+    <>
+      <Route {...props}>{children}</Route>
+      <Footer />
+    </>
+  )
 }
 
 PublicRoute.propTypes = {

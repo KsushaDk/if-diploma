@@ -1,3 +1,8 @@
+export const initialRegistrationState = {
+  logIn: false,
+  signUp: false,
+}
+
 export const initialUserState = {
   isAuthenticated: false,
   username: '',

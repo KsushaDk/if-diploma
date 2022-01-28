@@ -1,99 +1,27 @@
 import { createUseStyles } from 'react-jss'
-
-const colors = {
-  generalWhite: '#FFFFFF',
-  generalBlack: '#000000',
-  generalRed: '#ff5d4f',
-  primaryGray: '#616161',
-  secondaryGray: '#b5b5b5',
-  primaryBlue: '#85c8ee',
-  secondaryBlue: '#d3ebf9',
-}
-
-const btn = {
-  borderRadius: '8px',
-  border: 'none',
-  cursor: 'pointer',
-}
-
-const typography = {
-  h2: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '40px',
-    lineHeight: '54px',
-  },
-
-  h3: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    lineHeight: '27px',
-    textDecoration: 'none',
-  },
-  author: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '24px',
-    lineHeight: '33px',
-  },
-  btn: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '20px',
-    lineHeight: '27px',
-  },
-  pages: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '18px',
-    lineHeight: '25px',
-  },
-  about: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '16px',
-    lineHeight: '22px',
-  },
-  aboutH3: {
-    // fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '28px',
-    lineHeight: '38px',
-  },
-}
+import { colors, btn, typography } from '../../helpers/constants.styles'
 
 export const bookInfoStyles = () => ({
   book: {
-    padding: '0px 105px 80px',
-    background: '#FAFAFA',
+    padding: '3vh 5vw',
+    background: `${colors.mainBg}`,
+    minHeight: 'calc(100vh - 205px)',
   },
   book__info: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
-    padding: '32px',
-    marginTop: '5%',
-    boxSizing: 'border-box',
-    background: `${colors.generalWhite}`,
+    padding: '2%',
     borderRadius: '16px',
+    background: `${colors.generalWhite}`,
   },
   book__info_img: {
     width: '300px',
     height: '455px',
     backgroundSize: 'cover',
-    overflow: 'hidden',
-    '& img': {
-      width: '100%',
-      height: '100%',
-    },
+    backgroundRepeat: 'no-repeat',
+    border: `1px solid ${colors.secondaryGray}`,
+    borderRadius: '8px',
     '&:hover': {
       opacity: 0.7,
     },
@@ -102,38 +30,36 @@ export const bookInfoStyles = () => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    marginLeft: '2%',
     width: '70%',
     height: '100%',
   },
   book__info_stars: {
-    width: '160px',
-    height: '24px',
+    width: '30%',
+    minHeight: '24px',
     backgroundImage: 'url(./images/star.svg)',
     backgroundRepeat: 'space',
     backgroundSize: 'contain',
   },
   book__info_common: {
-    '& h2': {
-      margin: '0px',
+    '& h4': {
       paddingBottom: '2%',
-      ...typography.h2,
+      ...typography.h4,
       color: `${colors.generalBlack}`,
       '&:hover': {
         opacity: 0.7,
       },
     },
     '& p': {
-      margin: '0px',
       paddingBottom: '3%',
-      ...typography.author,
+      ...typography.h2,
       color: `${colors.generalRed}`,
       '&:hover': {
         opacity: 0.7,
       },
     },
     '& span': {
-      margin: '0px',
-      ...typography.pages,
+      ...typography.input,
       fontWeight: 'normal',
       color: `${colors.primaryGray}`,
     },
@@ -143,25 +69,52 @@ export const bookInfoStyles = () => ({
     marginTop: '4%',
     width: '185px',
     height: '46px',
-    boxSizing: 'border-box',
     ...typography.btn,
     color: `${colors.generalWhite}`,
-    backgroundColor: `${colors.secondaryGray}`,
+    backgroundColor: `${colors.generalRed}`,
     ...btn,
-    '&:hover': {
-      opacity: 0.7,
-    },
   },
   book__info_about: {
     marginTop: '4%',
     color: `${colors.generalBlack}`,
     '& h3': {
-      ...typography.aboutH3,
+      ...typography.p,
+      fontWeight: 'bold',
       marginBottom: '3%',
     },
     '& p': {
-      ...typography.about,
+      ...typography.placeholder,
     },
+  },
+  btn__show_more: {
+    width: '122px',
+    height: '32px',
+    background: `${colors.secondaryGray}`,
+    borderRadius: '8px',
+    border: 'none',
+    ...typography.a,
+    textAlign: 'center',
+    color: `${colors.generalWhite}`,
+    marginTop: '2%',
+  },
+  '@media (max-width: 768px)': {
+    book: {
+      minHeight: 'calc(100vh - 300px)',
+    },
+    book__info: {
+      flexDirection: 'column',
+    },
+    book__info_img: {
+      width: '100%',
+      height: 'auto',
+    },
+    book__info_describtion: {
+      width: '100%',
+      marginTop: '3%',
+    },
+  },
+  '@media (max-width: 450px)': {
+    minHeight: 'calc(100vh - 500px)',
   },
 })
 

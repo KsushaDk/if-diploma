@@ -36,11 +36,13 @@ function UserNavi() {
             <Link to="/user">Your orders</Link>
           </div>
 
-          <div>
-            <a href="#" />
-          </div>
-          <div onClick={handleClick}>
-            <a href="#" />
+          <div className={classes.navi_links_userinfo}>
+            <div className={classes.navi_links_user}>
+              <a href="#" />
+            </div>
+            <div className={classes.navi_links_settings} onClick={handleClick}>
+              <a href="#" />
+            </div>
           </div>
         </div>
       </nav>
