@@ -12,14 +12,14 @@ function AllBooks() {
 
   const [isShown, setShown] = useState(false)
 
-  const numberQuantity = isShown ? allBooks.length : 4
+  const bookQuantity = isShown ? allBooks.length : 4
 
   return (
     <div className={classes.books}>
       <div className={classes.books__list}>
         <h3 className={classes.books__list_title}>All books</h3>
         <div className={classes.books__list_items}>
-          {allBooks.slice(0, numberQuantity).map((book) => (
+          {allBooks.slice(0, bookQuantity).map((book) => (
             <BookItem book={book} key={book.id} />
           ))}
         </div>

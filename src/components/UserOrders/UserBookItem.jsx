@@ -10,16 +10,18 @@ import { removeFromUserList } from '../../redux/actions'
 // components
 import RatingBook from '../AllBooks/RatingBook'
 
-function UserBookItem({ book }) {
+function UserBookItem({ book, buttonText }) {
   const classes = useStyles()
   const dispatch = useDispatch()
-  console.log(book.rating)
 
   const allBooks = useSelector(({ books }) => books.allBooks || [])
 
   const handleClick = useCallback((id) => {
     const orderedBook = allBooks.find((item) => item.id === `${id}`)
-    dispatch(removeFromUserList(orderedBook))
+    if (orderedBook.status === 'Available') {
+      dispatch(removeFromUserList(orderedBook))
+      // eslint-disable-next-line no-alert
+    } else alert('Sorry, book is taken :c')
   }, [])
 
   return (
@@ -42,14 +44,15 @@ function UserBookItem({ book }) {
         type="button"
         onClick={() => handleClick(book.id)}
       >
-        Return
+        {buttonText}
       </button>
     </div>
   )
 }
 
 UserBookItem.propTypes = {
-  book: PropTypes.arrayOf.isRequired,
+  book: PropTypes.object.isRequired,
+  buttonText: PropTypes.string.isRequired,
 }
 
 UserBookItem.displayName = 'UserBookItem'

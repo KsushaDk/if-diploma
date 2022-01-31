@@ -115,6 +115,16 @@ export const allBooksStyles = () => ({
     ...btn,
     outline: 'none',
   },
+  books__list_item_status_taken: {
+    height: '26px',
+    width: '80%',
+    textAlign: 'center',
+    ...typography.a,
+    color: `${colors.generalBlack}`,
+    background: `${colors.generalWhite}`,
+    borderRadius: '24px',
+    border: `2px solid ${colors.generalRed}`,
+  },
   books__list_btn_show: {
     alignSelf: 'center',
     marginTop: '36px',

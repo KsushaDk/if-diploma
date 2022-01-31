@@ -7,21 +7,47 @@ import UserBookItem from './UserBookItem'
 
 function UserOrders() {
   const classes = useStyles()
-  const userList = useSelector(({ books }) => books.userList || [])
+
+  const userName = useSelector(({ user }) => user.username)
+  const allBooks = useSelector(({ books }) => books.allBooks || [])
+
+  const waitingList = []
+  const orderList = []
+
+  allBooks.map((book) => {
+    if (book.user === userName && book.status === 'Taken') {
+      waitingList.push(book)
+    } else if (book.user === userName && book.status === 'Available') {
+      orderList.push(book)
+    }
+    return book
+  })
 
   return (
     <div className={classes.user}>
       <div className={classes.user__list}>
         <h3 className={classes.user__list_title}>Waiting for</h3>
         <div className={classes.user__list_info}>
-          <span>Oops! You are not waiting for any book</span>
+          {waitingList.length > 0 ? (
+            waitingList.map((book) => (
+              <UserBookItem
+                book={book}
+                key={book.id}
+                buttonText="Check status"
+              />
+            ))
+          ) : (
+            <span>Oops! You are not waiting for any book </span>
+          )}
         </div>
       </div>
       <div className={classes.user__list}>
         <h3 className={classes.user__list_title}>List of your books</h3>
         <div className={classes.user__list_info}>
-          {userList.length > 0 ? (
-            userList.map((book) => <UserBookItem book={book} key={book.id} />)
+          {orderList.length > 0 ? (
+            orderList.map((book) => (
+              <UserBookItem book={book} key={book.id} buttonText="Return" />
+            ))
           ) : (
             <span>Oops! You haven&apos;t added any book yet </span>
           )}
