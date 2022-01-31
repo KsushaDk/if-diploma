@@ -19,6 +19,7 @@ function* getBooksSaga({ type }) {
             status[Math.floor(Math.random() * status.length)]
 
           bookWithStatus.rating = Math.floor(1 + Math.random() * (5 + 1 - 1))
+          bookWithStatus.user = ''
           return bookWithStatus
         })
         return books

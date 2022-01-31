@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import useStyles from '../AllBooks/AllBooks.styles'
 
+// components
+import RatingBook from '../AllBooks/RatingBook'
+
 function SearchedBooks() {
   const classes = useStyles()
 
@@ -36,16 +39,16 @@ function SearchedBooks() {
                     className={classes.books__list_item_status}
                     type="button"
                   >
-                    Available
+                    {book.status}
                   </button>
                   <div className={classes.books__list_item_about}>
                     <p>{book.name}</p>
                     <span>
-                      by
+                      by &nbsp;
                       {book.author}
                     </span>
                   </div>
-                  <div className={classes.books__list_item_stars} />
+                  <RatingBook rating={book.rating} />
                   <button
                     className={classes.books__list_item_btn_order}
                     type="button"
